@@ -1,0 +1,20 @@
+{
+  "name": "secret-santa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js -s"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "commander": "^9.3.0",
+    "date-fns": "^2.28.0",
+    "dotenv": "^16.0.1",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  }
+}
