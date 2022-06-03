@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js -s"
+    "test": "node index.js -s -t"
   },
   "type": "module",
   "author": "",

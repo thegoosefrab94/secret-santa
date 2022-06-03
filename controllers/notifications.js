@@ -18,7 +18,7 @@ export async function notifyParticipents(results) {
             return axios.post('https://textbelt.com/text', {
                 phone: phoneNumbers[santa],
                 message: `You have ${victim}`,
-                key: `${process.env.SMS_KEY}`,
+                key: `${process.env.SMS_KEY}${global.asTest ? '_test' : ''}`,
             }).then(response => {
                 if (response.data.success) {
                     console.log(`Sent secret santa result to ${santa}`);
