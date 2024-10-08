@@ -10,22 +10,22 @@ program
 
 program.parse();
 
-async function main() {
+async function main(listName) {
     const options = program.opts();
     global.asTest = !!options.test; // Would never use something like this in a real app
-    const results = await generate();
+    const results = await generate(listName);
     if (!options.skipText) {
-        const metQuota = await checkQuota();
-        if (!metQuota) {
-            await notifyParticipents(results);
+        const hasRemainingTexts = await checkQuota(listName);
+        if (hasRemainingTexts) {
+            await notifyParticipents(results, listName);
         } else {
             console.log('Did not send text results as you have reached the text quota');
         }
     } else {
         console.log('Skipping notifications');
     }
-    await recordCurrentYear(results);
+    await recordCurrentYear(results, listName);
     console.log('All done!')
 }
 
-main().catch(console.error);
+main(process.argv[2]).catch(console.error);

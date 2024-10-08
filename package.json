@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "regular": "node index.js regular",
+    "family": "node index.js crowley",
     "test": "node index.js -s -t"
   },
   "type": "module",

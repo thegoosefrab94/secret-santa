@@ -1,18 +1,19 @@
 import 'dotenv/config'; 
 import axios from 'axios';
-import { getPhoneNumberList } from '../util/memberList.js';
+import { getMemberList, getPhoneNumberList } from '../util/memberList.js';
 
 
-export async function checkQuota() {
+export async function checkQuota(listName) {
     console.log('Checking SMS quota');
+    const members = getMemberList(listName);
     const response = await axios.get(`https://textbelt.com/quota/${process.env.SMS_KEY}`);
     console.log(`Quota remaining: ${response.data.quotaRemaining}`);
-    return response.data.quotaRemaining <= 0;
+    return response.data.quotaRemaining >= members.length;
 }
 
-export async function notifyParticipents(results) {
+export async function notifyParticipents(results, listName) {
     console.log('Notifying participents');
-    const phoneNumbers = getPhoneNumberList();
+    const phoneNumbers = getPhoneNumberList(listName);
     return Promise.all(
         Object.entries(results).map(([santa, victim]) => {
             return axios.post('https://textbelt.com/text', {

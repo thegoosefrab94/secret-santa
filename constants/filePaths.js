@@ -1,4 +1,4 @@
 import * as path from 'path';
 
-export const currentYearPath = path.join(process.cwd(), 'files', 'currentYear.txt');
-export const historyPath = path.join(process.cwd(), 'files', 'history.txt');
+export const currentYearPath = (listName) => path.join(process.cwd(), 'files', listName, 'currentYear.txt');
+export const historyPath = (listName) => path.join(process.cwd(), 'files', listName, 'history.txt');
